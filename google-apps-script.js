@@ -12,11 +12,17 @@
  * GET   ?key=ADMIN_KEY       returns every response as JSON (for the dashboard).
  */
 
+// The Google Sheet's ID: the long part of its URL between /d/ and /edit.
+// Needed when this script was created at script.google.com rather than from
+// the Sheet's Extensions → Apps Script menu. Leave '' if it was made from the Sheet.
+const SPREADSHEET_ID = '';
+
 const SHEET_NAME = 'Responses';
 const RAW = 'raw_json';   // full response, used by the dashboard
 
 function sheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SPREADSHEET_ID ? SpreadsheetApp.openById(SPREADSHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error('No spreadsheet: set SPREADSHEET_ID at the top of the script');
   return ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
 }
 
@@ -65,13 +71,17 @@ function doGet(e) {
   const key = PropertiesService.getScriptProperties().getProperty('ADMIN_KEY');
   if (!key || (e.parameter && e.parameter.key) !== key) return out_({ error: 'key required' });
 
-  const sh = sheet_();
-  if (sh.getLastRow() < 2) return out_([]);
-  const headers = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
-  const col = headers.indexOf(RAW);
-  if (col === -1) return out_([]);
-  const rows = sh.getRange(2, col + 1, sh.getLastRow() - 1, 1).getValues();
-  const list = [];
-  rows.forEach((r) => { try { list.push(JSON.parse(r[0])); } catch (err) { /* skip hand-edited rows */ } });
-  return out_(list);
+  try {
+    const sh = sheet_();
+    if (sh.getLastRow() < 2) return out_([]);
+    const headers = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+    const col = headers.indexOf(RAW);
+    if (col === -1) return out_([]);
+    const rows = sh.getRange(2, col + 1, sh.getLastRow() - 1, 1).getValues();
+    const list = [];
+    rows.forEach((r) => { try { list.push(JSON.parse(r[0])); } catch (err) { /* skip hand-edited rows */ } });
+    return out_(list);
+  } catch (err) {
+    return out_({ error: String(err) });
+  }
 }

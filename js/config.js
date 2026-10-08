@@ -6,5 +6,5 @@
  */
 
 window.CONFIG = {
-  sheetsUrl: '',
+  sheetsUrl: 'https://script.google.com/macros/s/AKfycbwI7xh9HfdLNdKW7vgbfEDbb0-JMSlKKHnRkqmot2GSMz8nZexuSFQucqXBy0A5uCu39A/exec',
 };
