@@ -488,6 +488,7 @@
     const where = await Store.submit({
       id: S.id,
       version: 1,
+      variant: (window.CONFIG && CONFIG.variant) || 'v1',
       answers,
       startedAt: S.startedAt,
       submittedAt,

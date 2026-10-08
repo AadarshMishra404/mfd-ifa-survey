@@ -7,4 +7,7 @@
 
 window.CONFIG = {
   sheetsUrl: 'https://script.google.com/macros/s/AKfycbwI7xh9HfdLNdKW7vgbfEDbb0-JMSlKKHnRkqmot2GSMz8nZexuSFQucqXBy0A5uCu39A/exec',
+
+  // Which version of the site this is; stored with every response.
+  variant: 'v1',
 };

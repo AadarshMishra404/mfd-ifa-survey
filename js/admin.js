@@ -188,11 +188,12 @@
       <div class="card">
         <div class="table-wrap">
           <table class="list">
-            <thead><tr><th>Submitted</th><th>Name / city</th><th>Type</th><th>Years</th><th>AUM</th><th>Location</th><th>Time</th></tr></thead>
+            <thead><tr><th>Submitted</th><th>Version</th><th>Name / city</th><th>Type</th><th>Years</th><th>AUM</th><th>Location</th><th>Time</th></tr></thead>
             <tbody>
               ${sorted.map((r) => `
                 <tr class="click" data-id="${esc(r.id)}" tabindex="0">
                   <td>${r.submittedAt ? new Date(r.submittedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' }) : '—'}</td>
+                  <td>${esc(r.variant || 'v1')}</td>
                   <td>${esc(format(byId.q1, r.answers) || '—')}</td>
                   <td>${esc(short(r.answers.q2 || '—'))}</td>
                   <td>${esc(r.answers.q3 || '—')}</td>

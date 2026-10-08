@@ -38,7 +38,7 @@ window.U = (() => {
 
   /** One flat column per answer — shared by the CSV export and the Google Sheet. */
   function columns() {
-    const cols = [['id', (r) => r.id], ['submittedAt', (r) => r.submittedAt], ['durationSec', (r) => r.durationSec]];
+    const cols = [['id', (r) => r.id], ['variant', (r) => r.variant || 'v1'], ['submittedAt', (r) => r.submittedAt], ['durationSec', (r) => r.durationSec]];
     for (const q of SURVEY.questions) {
       if (q.type === 'fields') q.fields.forEach((f) => cols.push([`Q${q.num} ${f.label}`, (r) => r.answers[q.id]?.[f.key] || '']));
       else if (q.type === 'grid') q.rows.forEach((row) => cols.push([`Q${q.num} ${row}`, (r) => r.answers[q.id]?.[row] || '']));
