@@ -75,8 +75,20 @@ server.mjs       static server + /api/responses
 data/            created on first response (not served publicly)
 ```
 
-## Deploying
+## Hosting (GitHub Pages + Google Sheets)
 
-Any host that can run `node server.mjs` will work (Render, Railway, a VPS). Keep the `data/` folder on persistent storage, and set `ADMIN_KEY`.
+Live site: https://aadarshmishra404.github.io/mfd-ifa-survey/
+Dashboard: https://aadarshmishra404.github.io/mfd-ifa-survey/admin.html?key=YOUR_ADMIN_KEY
 
-If the page is opened without the server, responses are kept in that browser and sent the next time the server can be reached.
+GitHub Pages serves only static files, so responses are stored in a Google Sheet:
+
+1. Create a Google Sheet, then open **Extensions → Apps Script**. Delete the starter code and paste in all of [`google-apps-script.js`](google-apps-script.js). Save.
+2. Open **Project Settings** (gear icon) → **Script properties** → **Add property**: `ADMIN_KEY` = a secret of your choice.
+3. Go to **Deploy → New deployment**. Choose the type **Web app**, set *Execute as* to **Me** and *Who has access* to **Anyone**, then **Deploy** and authorise it.
+4. Copy the **Web app URL** (it ends in `/exec`) into `sheetsUrl` in [`js/config.js`](js/config.js). Then commit and push; Pages redeploys within about a minute.
+
+Each response becomes one row in the **Responses** tab, with one readable column per answer, plus a `raw_json` column that the dashboard uses.
+
+If you change `google-apps-script.js` later, use **Deploy → Manage deployments → Edit → New version**. This keeps the same URL.
+
+With `sheetsUrl` left empty, the site falls back to `node server.mjs` (local or any Node host). If the backend can't be reached, a response is kept in the respondent's browser and sent the next time they open the page.
