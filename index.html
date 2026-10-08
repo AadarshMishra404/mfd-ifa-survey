@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Next-Gen MFD & IFA Survey</title>
+  <meta name="description" content="A 12–15 minute survey for new and second-generation Mutual Fund Distributors and Independent Financial Advisors.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232448c9'/><path d='M9 21l5-6 4 3 5-7' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Next-Gen MFD & IFA Survey<small id="section-label"></small></div>
+      <span class="save-state" id="save-state" aria-live="polite"></span>
+      <button class="icon-btn" id="theme" aria-label="Toggle dark mode"></button>
+    </div>
+    <nav class="progress" id="progress" aria-label="Questions"></nav>
+  </header>
+
+  <main class="stage" id="stage"></main>
+
+  <footer class="navbar" id="navbar" hidden>
+    <div class="navbar-inner">
+      <button class="btn ghost small" id="back">⟵ Back</button>
+      <span class="spacer"></span>
+      <span class="hint" id="kbd-hint"></span>
+      <button class="btn" id="next">Next</button>
+    </div>
+  </footer>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <script src="js/config.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/survey.js"></script>
+</body>
+</html>

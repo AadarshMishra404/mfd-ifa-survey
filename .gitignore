@@ -1,0 +1,4 @@
+# source document and collected responses stay private
+*.docx
+data/
+.cert/

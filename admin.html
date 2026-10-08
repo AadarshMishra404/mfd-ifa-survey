@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Survey Results Dashboard</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232448c9'/><path d='M8 24V14M14 24V8M20 24v-7M26 24V11' stroke='white' stroke-width='3' stroke-linecap='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="dash">
+    <div class="dash-head">
+      <div>
+        <h1>Survey results</h1>
+        <p>Next-Gen MFD & IFA Practice Survey · <a href="./" style="color:var(--accent)">open the survey ↗</a></p>
+      </div>
+      <div class="dash-actions">
+        <button class="btn ghost small" id="refresh">Refresh</button>
+        <button class="btn ghost small" id="demo">Show sample data</button>
+        <button class="btn ghost small" id="csv">Export CSV</button>
+        <button class="btn ghost small" id="json">Export JSON</button>
+        <button class="icon-btn" id="theme" aria-label="Toggle dark mode"></button>
+      </div>
+    </div>
+
+    <div class="source" id="source"></div>
+    <div class="filters" id="filters"></div>
+    <div class="kpis" id="kpis"></div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="overview" aria-selected="true">Overview</button>
+      <button class="tab" role="tab" data-tab="questions" aria-selected="false">All questions</button>
+      <button class="tab" role="tab" data-tab="open" aria-selected="false">Q13 answers</button>
+      <button class="tab" role="tab" data-tab="responses" aria-selected="false">Responses</button>
+    </div>
+
+    <div id="view"></div>
+  </div>
+
+  <dialog class="modal" id="modal">
+    <div class="modal-head"><h2 id="modal-title">Response</h2><button class="icon-btn" id="modal-close" aria-label="Close">✕</button></div>
+    <div class="modal-body" id="modal-body"></div>
+  </dialog>
+
+  <script src="js/config.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
